@@ -1,13 +1,15 @@
 const keys = require("./keys");
 const express = require("express");
-const bodyParse = require("body-parse");
+const bodyParser = require('body-parser');
 const cors = require("cors");
 
 const app = express();
 app.use(cors());
-app.use(bodyParse.json());
+app.use(bodyParser.json());
 
-const { Pool } = require("pg");
+const {
+  Pool
+} = require("pg");
 
 const pgClient = new Pool({
   user: keys.pgUser,
@@ -56,7 +58,9 @@ app.post("/values", async (req, res) => {
   redisPublisher.publish("insert", index);
   pgClient.query("INSERT INTO values(number) VALUES($1), [index]");
 
-  res.send({ working: true });
+  res.send({
+    working: true
+  });
 });
 
 app.listen(5000, err => {
