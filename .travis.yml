@@ -12,7 +12,7 @@ after_success:
   - docker build -t wee911/multi-nginx ./nginx
   - docker build -t wee911/multi-server ./server
   - docker build -t wee911/multi-worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-sdtin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push wee911/multi-client
   - docker push wee911/multi-nginx
   - docker push wee911/multi-server
